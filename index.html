@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>20/10</title>
+  <style>
+    body {
+      text-align: center;
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #myImage {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="playBtn">Click this button</button>
+
+  <!-- Âm thanh -->
+  <audio id="myAudio" src="music.mp3" preload="auto"></audio>
+
+  <!-- Ảnh -->
+  <img id="myImage" src="image.jpg" alt="Ảnh">
+
+  <script>
+    const audio = document.getElementById("myAudio");
+    const image = document.getElementById("myImage");
+    const button = document.getElementById("playBtn");
+
+    button.addEventListener("click", async function() {
+      try {
+        image.style.display = "block";      // Hiện ảnh
+        await image.requestFullscreen();    // Fullscreen
+        await audio.play();                 // Phát nhạc
+        button.style.display = "none";      // Ẩn nút
+      } catch (err) {
+        console.error("Không thể phát nhạc hoặc hiện ảnh:", err);
+      }
+    });
+  </script>
+</body>
+</html>
